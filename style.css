@@ -1,0 +1,14 @@
+/*
+Theme Name: WordPress Logistic Theme
+Theme URI: https://example.com/wordpress-logistic-theme
+Author: Theme Team
+Author URI: https://example.com
+Description: Performance-focused logistics theme with customizable color variables.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 7.4
+Text Domain: wordpress-logistic-theme
+*/
+
+/* Main stylesheet is loaded from /assets/css/style.css via wp_enqueue_style. */
