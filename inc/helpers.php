@@ -10,6 +10,7 @@ function il_theme_option(string $key, string $default = ''): string {
     if (!is_array($options)) {
         return $default;
     }
+
     $value = $options[$key] ?? $default;
     return is_string($value) ? $value : $default;
 }
@@ -58,13 +59,35 @@ class IL_Nav_Walker extends Walker_Nav_Menu {
         $active  = in_array('current-menu-item', $classes, true) || in_array('current-menu-parent', $classes, true);
         $link_class = $this->link_class . ($active ? ' ' . $this->link_class . '--active' : '');
 
+        $url = is_string($item->url) && $item->url !== '' ? $item->url : '#';
+
         $output .= sprintf(
             '<a href="%s" class="%s">%s</a>',
-            esc_url((string) $item->url),
+            esc_url($url),
             esc_attr($link_class),
             esc_html($item->title)
         );
     }
 
     public function end_el(&$output, $item, $depth = 0, $args = null): void {}
+}
+
+function il_render_menu_links(string $location, string $link_class, array $fallback): void {
+    if (has_nav_menu($location)) {
+        wp_nav_menu([
+            'theme_location' => $location,
+            'container' => false,
+            'items_wrap' => '%3$s',
+            'fallback_cb' => false,
+            'walker' => new IL_Nav_Walker($link_class),
+        ]);
+
+        return;
+    }
+
+    foreach ($fallback as $item) {
+        $href = isset($item['href']) ? (string) $item['href'] : '#';
+        $label = isset($item['label']) ? (string) $item['label'] : '';
+        printf('<a href="%s" class="%s">%s</a>', esc_url($href), esc_attr($link_class), esc_html($label));
+    }
 }
