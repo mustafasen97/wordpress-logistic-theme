@@ -1398,7 +1398,7 @@ ul {
   color: var(--color-text-light);
   margin-bottom: 1rem;
   display: -webkit-box;
-  --webkit-line-clamp: 4;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -4439,3 +4439,14 @@ ul {
     opacity: 0.9;
     line-height: 1.5;
 }
+
+
+/* WordPress compatibility layer */
+.header__nav .menu,
+.mobile-menu .menu,
+.footer__menu .menu{display:contents;}
+.header__nav .menu-item,
+.mobile-menu .menu-item{display:contents;}
+.footer__menu .menu{list-style:none;margin:0;padding:0;}
+.footer__menu .menu-item{margin:0;}
+main{width:100%;overflow-x:clip;}
