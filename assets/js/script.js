@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
       arrows: true,
       pagination: true,
       autoplay: true,
-      interval: 5000,
+      interval: 6500,
       breakpoints: {
         1024: { perPage: 2, padding: '10%' },
         768: { perPage: 1, padding: '15%' }
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
           slides[current].classList.remove('is-active');
           current = (current + 1) % slides.length;
           slides[current].classList.add('is-active');
-        }, 4500);
+        }, 7000);
       }
     }
   }

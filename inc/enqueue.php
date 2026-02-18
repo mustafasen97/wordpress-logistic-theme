@@ -21,5 +21,11 @@ add_action('wp_enqueue_scripts', static function (): void {
     }
 
     wp_enqueue_style('il-style', get_template_directory_uri() . '/assets/css/style.css', $style_deps, il_asset_ver('assets/css/style.css'));
+
+    $primary = sanitize_hex_color(il_theme_option('color_primary', '#fb923c')) ?: '#fb923c';
+    $secondary = sanitize_hex_color(il_theme_option('color_secondary', '#1e3a8a')) ?: '#1e3a8a';
+    $inline_css = ':root{--color-primary:' . $primary . ';--color-primary-dark:' . $primary . ';--color-blue:' . $secondary . ';--color-blue-dark:' . $secondary . ';}';
+    wp_add_inline_style('il-style', $inline_css);
+
     wp_enqueue_script('il-main', get_template_directory_uri() . '/assets/js/script.js', is_front_page() ? ['il-splide'] : [], il_asset_ver('assets/js/script.js'), true);
 });

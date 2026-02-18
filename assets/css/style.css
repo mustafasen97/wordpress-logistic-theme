@@ -735,16 +735,39 @@ ul {
 
 .news-carousel {
   position: relative;
-  min-height: 230px;
+  min-height: 270px;
 }
 
 .news-carousel .news-slide {
   display: none;
   animation: ilFadeIn .35s ease;
+  min-height: 250px;
 }
 
 .news-carousel .news-slide.is-active {
   display: flex;
+}
+
+.news-faq .news-card {
+  min-height: 240px;
+  align-items: stretch;
+}
+
+.news-faq .news-card__img {
+  width: 38%;
+  min-height: 190px;
+}
+
+.news-faq .news-card__content {
+  width: 62%;
+}
+
+.news-faq .news-card__content p {
+  min-height: 66px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 @keyframes ilFadeIn {
@@ -4516,9 +4539,6 @@ ul {
 /* WordPress compatibility layer */
 .header__nav .menu,
 .mobile-menu .menu,
-.footer__menu .menu{display:contents;}
 .header__nav .menu-item,
 .mobile-menu .menu-item{display:contents;}
-.footer__menu .menu{list-style:none;margin:0;padding:0;}
-.footer__menu .menu-item{margin:0;}
 main{width:100%;overflow-x:clip;}
