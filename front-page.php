@@ -156,20 +156,25 @@ $hero_bg = $hero_bg_id > 0 ? wp_get_attachment_image_url($hero_bg_id, 'full') : 
     <section class="why-us">
         <div class="container why-us__container">
             <div class="why-us__visuals">
-                <div class="circle-image circle-image--main"><?php echo wp_kses_post(il_image_html(il_home_meta_int($page_id, 'why_center_image_id'), 'large', ['loading' => 'lazy', 'decoding' => 'async', 'alt' => 'Neden biz'], $theme_uri . '/assets/images/elevate-dI-aXC7DWpQ-unsplash_compressed.webp')); ?></div>
-                <div class="circle-image circle-image--bubble-1"><?php echo wp_kses_post(il_image_html(il_home_meta_int($page_id, 'why_bubble_1_image_id'), 'thumbnail', ['loading' => 'lazy', 'decoding' => 'async', 'alt' => 'detay 1'], $theme_uri . '/assets/images/william-william-NndKt2kF1L4-unsplash.webp')); ?></div>
-                <div class="circle-image circle-image--bubble-2"><?php echo wp_kses_post(il_image_html(il_home_meta_int($page_id, 'why_bubble_2_image_id'), 'thumbnail', ['loading' => 'lazy', 'decoding' => 'async', 'alt' => 'detay 2'], $theme_uri . '/assets/images/jean-woloszczyk-V5kVoHT44I-unsplash.webp')); ?></div>
+                <div class="composition">
+                    <div class="composition__center"><?php echo wp_kses_post(il_image_html(il_home_meta_int($page_id, 'why_center_image_id'), 'large', ['loading' => 'lazy', 'decoding' => 'async', 'alt' => 'Neden biz'], $theme_uri . '/assets/images/elevate-dI-aXC7DWpQ-unsplash_compressed.webp')); ?></div>
+                    <div class="composition__bubble composition__bubble--1"><?php echo wp_kses_post(il_image_html(il_home_meta_int($page_id, 'why_bubble_1_image_id'), 'thumbnail', ['loading' => 'lazy', 'decoding' => 'async', 'alt' => 'detay 1'], $theme_uri . '/assets/images/william-william-NndKt2kF1L4-unsplash.webp')); ?></div>
+                    <div class="composition__bubble composition__bubble--2"><?php echo wp_kses_post(il_image_html(il_home_meta_int($page_id, 'why_bubble_2_image_id'), 'thumbnail', ['loading' => 'lazy', 'decoding' => 'async', 'alt' => 'detay 2'], $theme_uri . '/assets/images/jean-woloszczyk-V5kVoHT44I-unsplash.webp')); ?></div>
+                </div>
             </div>
             <div class="why-us__content">
-                <span class="badge badge--outline"><?php echo esc_html(il_home_meta($page_id, 'why_badge', 'Neden Biz')); ?></span>
+                <span class="badge badge--primary"><?php echo esc_html(il_home_meta($page_id, 'why_badge', 'Neden Biz')); ?></span>
                 <h2 class="section-title"><?php echo esc_html(il_home_meta($page_id, 'why_title', 'Neden Bizi Seçmelisiniz?')); ?></h2>
                 <p class="section-desc"><?php echo wp_kses_post(il_home_meta($page_id, 'why_description', 'Lojistik operasyonlarda kalite ve güvenlik.')); ?></p>
 
-                <div class="why-us__features">
+                <div class="features-list">
                     <?php for ($i = 1; $i <= 4; $i++) : ?>
-                        <div class="why-feature-item">
-                            <h3><?php echo esc_html(il_home_meta($page_id, 'why_feature_' . $i . '_title', ['Geniş Hizmet Ağı', 'Sigortalı Taşımacılık', 'Zamanında Teslimat', '7/24 Destek'][$i - 1])); ?></h3>
-                            <p><?php echo esc_html(il_home_meta($page_id, 'why_feature_' . $i . '_desc', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')); ?></p>
+                        <div class="feature-row">
+                            <div class="feature-icon">•</div>
+                            <div class="feature-text">
+                                <h4><?php echo esc_html(il_home_meta($page_id, 'why_feature_' . $i . '_title', ['Geniş Hizmet Ağı', 'Sigortalı Taşımacılık', 'Zamanında Teslimat', '7/24 Destek'][$i - 1])); ?></h4>
+                                <p><?php echo esc_html(il_home_meta($page_id, 'why_feature_' . $i . '_desc', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')); ?></p>
+                            </div>
                         </div>
                     <?php endfor; ?>
                 </div>
@@ -241,26 +246,62 @@ $hero_bg = $hero_bg_id > 0 ? wp_get_attachment_image_url($hero_bg_id, 'full') : 
                         <input type="hidden" name="action" value="il_contact_form">
                         <?php wp_nonce_field('il_contact_form', 'il_contact_nonce'); ?>
                         <input type="text" name="company" value="" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
-                        <div class="contact-form__grid">
-                            <input type="text" name="name" placeholder="Ad Soyad" required>
-                            <input type="email" name="email" placeholder="E-Posta Adresiniz" required>
-                            <input type="tel" name="phone" placeholder="Telefon Numaranız" required>
-                            <input type="text" name="subject" placeholder="Konu">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Ad Soyad</label>
+                                <input type="text" name="name" placeholder="Adınız Soyadınız" required>
+                            </div>
+                            <div class="form-group">
+                                <label>E-Mail</label>
+                                <input type="email" name="email" placeholder="E-Posta Adresiniz" required>
+                            </div>
                         </div>
-                        <textarea name="message" placeholder="Mesajınız" required></textarea>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Telefon Numarası</label>
+                                <input type="tel" name="phone" placeholder="Telefon Numaranız" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Konu</label>
+                                <input type="text" name="subject" placeholder="Konu">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Mesaj</label>
+                            <textarea name="message" rows="3" placeholder="Mesajınız" required></textarea>
+                        </div>
                         <button type="submit" class="btn btn--dark-blue btn--full">Mesaj Gönder</button>
                     </form>
                 </div>
 
                 <div class="contact__info-col">
-                    <div class="contact__info-box">
+                    <div class="deco-circle deco-circle--1"></div>
+                    <div class="deco-circle deco-circle--2"></div>
+                    <div>
                         <h2 class="contact__title text-white">Bizimle İletişime Geç</h2>
                         <p class="contact__desc text-white-opacity">Korem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                         <ul class="contact-list">
-                            <li><div class="contact-icon">📍</div><span><?php echo esc_html(il_theme_option('address', 'Konum')); ?></span></li>
-                            <li><div class="contact-icon">✉️</div><span><?php echo esc_html(il_theme_option('email', 'info@example.com')); ?></span></li>
-                            <li><div class="contact-icon">📞</div><span><?php echo esc_html(il_theme_option('phone', '+90 123 456 7890')); ?></span></li>
+                            <li>
+                                <div class="contact-icon">📍</div>
+                                <div><h4>Konum</h4><p><?php echo nl2br(esc_html(il_theme_option('address', 'Lorem Ipsum No: 5 Ümraniye - İstanbul'))); ?></p></div>
+                            </li>
+                            <li>
+                                <div class="contact-icon">✉️</div>
+                                <div><h4>Email Adresimiz</h4><p><?php echo esc_html(il_theme_option('email', 'loremipsum@yourdomain.com')); ?></p></div>
+                            </li>
+                            <li>
+                                <div class="contact-icon">📞</div>
+                                <div><h4>Telefon Numaramız</h4><p><?php echo esc_html(il_theme_option('phone', '+90 123 456 789')); ?></p></div>
+                            </li>
                         </ul>
+                    </div>
+                    <div class="contact__social">
+                        <h4>Bizi Sosyal Medyada Takip Edin</h4>
+                        <div class="social-row">
+                            <a href="<?php echo esc_url(il_theme_option('instagram', '#')); ?>" aria-label="instagram">I</a>
+                            <a href="<?php echo esc_url(il_theme_option('facebook', '#')); ?>" aria-label="facebook">F</a>
+                            <a href="<?php echo esc_url(il_theme_option('linkedin', '#')); ?>" aria-label="linkedin">L</a>
+                        </div>
                     </div>
                 </div>
             </div>
