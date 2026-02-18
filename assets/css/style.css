@@ -759,7 +759,7 @@ ul {
 }
 
 .experience__content {
-  background-color: #fa9d54; /* Explicit orange bg */
+  background-color: var(--about-card-bg, #fa9d54); /* Explicit orange bg */
   border-radius: var(--border-radius-lg);
   color: #1f2937;
   padding: 2rem;
@@ -1721,7 +1721,7 @@ ul {
 
 /* Footer */
 .footer {
-  background-color: var(--color-blue);
+  background-color: var(--footer-bg, var(--color-blue));
   color: var(--color-white);
   border-top: 4px solid var(--color-primary);
   padding-top: 4rem;
@@ -1823,7 +1823,7 @@ ul {
 }
 
 .footer__bottom {
-  background-color: #fa9d54;
+  background-color: var(--footer-bottom-bg, #fa9d54);
   color: #111827;
   text-align: center;
   padding: 1rem;
@@ -2049,7 +2049,7 @@ ul {
 }
 
 .process-section--light {
-    background-color: #f8fafc;
+    background-color: var(--section-bg-light, #f8fafc);
 }
 
 .process-section__header {
@@ -2369,7 +2369,7 @@ ul {
 /* Vision Section */
 .vision-section {
     padding: var(--spacing-section) 0;
-    background-color: #f8fafc;
+    background-color: var(--section-bg-light, #f8fafc);
 }
 
 .vision-section__header {
@@ -2562,7 +2562,7 @@ ul {
 /* Partners Section */
 .partners-section {
     padding: 3rem 0;
-    background-color: #f8fafc;
+    background-color: var(--section-bg-light, #f8fafc);
     border-top: 1px solid #e2e8f0;
 }
 
@@ -3428,7 +3428,7 @@ ul {
 /* Simple FAQ Section */
 .faq-section-simple {
     padding: 5rem 0;
-    background-color: #f8fafc;
+    background-color: var(--section-bg-light, #f8fafc);
 }
 
 .faq-grid {
