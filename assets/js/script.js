@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('#services-slider')) {
     new Splide('#services-slider', {
       type: 'loop',
-      perPage: 4,
+      perPage: 3,
       focus: 'center',
       padding: '10%',
       gap: '0',
@@ -38,6 +38,28 @@ document.addEventListener('DOMContentLoaded', function () {
       parent.classList.toggle('active');
     });
   });
+
+
+
+  const newsCarousel = document.getElementById('news-carousel');
+  if (newsCarousel) {
+    const slides = newsCarousel.querySelectorAll('.news-slide');
+    let current = 0;
+
+    if (slides.length > 0) {
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('is-active', index === 0);
+      });
+
+      if (slides.length > 1) {
+        setInterval(() => {
+          slides[current].classList.remove('is-active');
+          current = (current + 1) % slides.length;
+          slides[current].classList.add('is-active');
+        }, 4500);
+      }
+    }
+  }
 
   // --- Services Page Logic (Animation Observer) ---
   const fadeElements = document.querySelectorAll('.service-box, .process-item');

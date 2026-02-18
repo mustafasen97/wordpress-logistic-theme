@@ -195,6 +195,7 @@ $hero_bg = $hero_bg_id > 0 ? wp_get_attachment_image_url($hero_bg_id, 'full') : 
                         </article>
                     <?php endwhile; ?>
                 <?php endif; wp_reset_postdata(); ?>
+                </div>
             </div>
         </div>
     </section>
@@ -203,9 +204,10 @@ $hero_bg = $hero_bg_id > 0 ? wp_get_attachment_image_url($hero_bg_id, 'full') : 
         <div class="container news-faq__container">
             <div>
                 <h2 class="section-title">Sektörden Haberler</h2>
+                <div class="news-carousel" id="news-carousel">
                 <?php if ($news->have_posts()) : ?>
                     <?php while ($news->have_posts()) : $news->the_post(); ?>
-                        <article class="news-card">
+                        <article class="news-card news-slide">
                             <a class="news-card__img" href="<?php the_permalink(); ?>"><?php has_post_thumbnail() ? the_post_thumbnail('medium', ['loading' => 'lazy', 'decoding' => 'async']) : print '<img src="' . esc_url($theme_uri . '/assets/images/caleb-ruiter-EmEQ6kK_5P0-unsplash_compressed.webp') . '" alt="' . esc_attr(get_the_title()) . '">'; ?></a>
                             <div class="news-card__content">
                                 <div>
@@ -218,6 +220,7 @@ $hero_bg = $hero_bg_id > 0 ? wp_get_attachment_image_url($hero_bg_id, 'full') : 
                         </article>
                     <?php endwhile; ?>
                 <?php endif; wp_reset_postdata(); ?>
+                </div>
             </div>
 
             <div>
