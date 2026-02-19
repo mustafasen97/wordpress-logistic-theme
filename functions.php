@@ -11,6 +11,7 @@ require_once get_template_directory() . '/inc/cpt.php';
 require_once get_template_directory() . '/inc/admin-options.php';
 require_once get_template_directory() . '/inc/meta-home.php';
 require_once get_template_directory() . '/inc/form-handlers.php';
+require_once get_template_directory() . '/inc/customizer.php';
 
 add_action('after_setup_theme', static function (): void {
     add_theme_support('title-tag');
