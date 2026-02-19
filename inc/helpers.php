@@ -6,13 +6,36 @@ if (!defined('ABSPATH')) {
 }
 
 function il_theme_option(string $key, string $default = ''): string {
+    $theme_mod = get_theme_mod('il_' . $key, null);
+    if ($theme_mod !== null && $theme_mod !== '') {
+        return is_scalar($theme_mod) ? (string) $theme_mod : $default;
+    }
+
     $options = get_option('il_theme_options');
     if (!is_array($options)) {
         return $default;
     }
 
     $value = $options[$key] ?? $default;
-    return is_string($value) ? $value : $default;
+    return is_scalar($value) ? (string) $value : $default;
+}
+
+function il_front_content(int $post_id, string $key, string $default = ''): string {
+    $theme_mod = get_theme_mod('il_front_' . $key, null);
+    if ($theme_mod !== null && $theme_mod !== '') {
+        return is_scalar($theme_mod) ? (string) $theme_mod : $default;
+    }
+
+    return il_home_meta($post_id, $key, $default);
+}
+
+function il_front_content_int(int $post_id, string $key): int {
+    $theme_mod = get_theme_mod('il_front_' . $key, null);
+    if ($theme_mod !== null && $theme_mod !== '') {
+        return absint($theme_mod);
+    }
+
+    return il_home_meta_int($post_id, $key);
 }
 
 function il_home_meta(int $post_id, string $key, string $default = ''): string {
