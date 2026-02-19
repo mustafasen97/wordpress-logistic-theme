@@ -422,6 +422,30 @@ ul {
   }
 }
 
+
+
+@media (min-width: 1024px) {
+  .header__container--center-logo {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1.5rem;
+  }
+
+  .header__container--center-logo .header__logo {
+    order: 2;
+    justify-self: center;
+  }
+
+  .header__container--center-logo .header__nav {
+    order: 1;
+    justify-self: start;
+  }
+
+  .header__container--center-logo .header__actions {
+    order: 3;
+    justify-self: end;
+  }
+}
 /* Mobile Menu */
 .mobile-menu {
   display: none;

@@ -13,11 +13,11 @@ $default_menu = [
     ['href' => home_url('/iletisim'), 'label' => 'İletişim'],
 ];
 
-
-$show_top_bar = il_theme_option('show_top_bar', '1') === '1';
-$header_cta_text = il_theme_option('header_cta_text', 'Teklif Al');
-$header_cta_url = il_theme_option('header_cta_url', '#contact');
-
+$show_top_bar = il_customize_value('il_show_top_bar', il_theme_option('show_top_bar', '1')) === '1';
+$header_cta_text = il_customize_value('il_header_cta_text', il_theme_option('header_cta_text', 'Teklif Al'));
+$header_cta_url = il_customize_value('il_header_cta_url', il_theme_option('header_cta_url', '#contact'));
+$header_layout = il_customize_value('il_header_layout', 'left');
+$header_container_class = 'container header__container' . ($header_layout === 'center' ? ' header__container--center-logo' : '');
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -48,9 +48,13 @@ $header_cta_url = il_theme_option('header_cta_url', '#contact');
 <?php endif; ?>
 
 <header class="header">
-    <div class="container header__container">
+    <div class="<?php echo esc_attr($header_container_class); ?>">
         <div class="header__logo">
-            <a href="<?php echo esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?><span>.</span></a>
+            <?php if (has_custom_logo()) : ?>
+                <?php the_custom_logo(); ?>
+            <?php else : ?>
+                <a href="<?php echo esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?><span>.</span></a>
+            <?php endif; ?>
         </div>
 
         <nav class="header__nav" aria-label="<?php esc_attr_e('Primary', 'ipsum-logistic'); ?>">
@@ -60,7 +64,7 @@ $header_cta_url = il_theme_option('header_cta_url', '#contact');
         <div class="header__actions">
             <button class="icon-btn" aria-label="Search"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
             <button class="icon-btn" aria-label="Call"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></button>
-            <a href="<?php echo esc_url($header_cta_url !== "" ? $header_cta_url : "#contact"); ?>" class="btn btn--primary"><?php echo esc_html($header_cta_text); ?></a>
+            <a href="<?php echo esc_url($header_cta_url !== '' ? $header_cta_url : '#contact'); ?>" class="btn btn--primary"><?php echo esc_html($header_cta_text); ?></a>
         </div>
 
         <button class="header__mobile-toggle" id="mobile-menu-btn" aria-label="Menu">
@@ -70,6 +74,6 @@ $header_cta_url = il_theme_option('header_cta_url', '#contact');
 
     <div class="mobile-menu" id="mobile-menu">
         <?php il_render_menu_links('mobile', 'mobile-menu__link', $default_menu); ?>
-        <a href="<?php echo esc_url($header_cta_url !== "" ? $header_cta_url : "#contact"); ?>" class="btn btn--primary btn--full"><?php echo esc_html($header_cta_text); ?></a>
+        <a href="<?php echo esc_url($header_cta_url !== '' ? $header_cta_url : '#contact'); ?>" class="btn btn--primary btn--full"><?php echo esc_html($header_cta_text); ?></a>
     </div>
 </header>

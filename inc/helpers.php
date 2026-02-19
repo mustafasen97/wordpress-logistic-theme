@@ -15,6 +15,17 @@ function il_theme_option(string $key, string $default = ''): string {
     return is_string($value) ? $value : $default;
 }
 
+function il_customize_value(string $key, string $default = ''): string {
+    $value = get_theme_mod($key, '');
+    return is_string($value) && $value !== '' ? $value : $default;
+}
+
+function il_customize_int(string $key, int $default = 0): int {
+    $value = get_theme_mod($key, 0);
+    $int = is_numeric($value) ? (int) $value : 0;
+    return $int > 0 ? $int : $default;
+}
+
 function il_home_meta(int $post_id, string $key, string $default = ''): string {
     $value = get_post_meta($post_id, '_il_' . $key, true);
     return is_string($value) && $value !== '' ? $value : $default;
