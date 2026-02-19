@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
         <div class="footer__grid">
             <div class="footer__col footer__col--about">
                 <div class="footer__logo"><?php bloginfo('name'); ?><span>.</span></div>
-                <p class="footer__desc">Yılların verdiği tecrübeyle birlikte hizmetlerimiz bizler için güvenilirlik, dayanım odaklı bir yapıdan teslimatlara gerçekleşiyor.</p>
+                <p class="footer__desc"><?php echo esc_html(il_theme_option('footer_about_text', 'Yılların verdiği tecrübeyle birlikte hizmetlerimiz bizler için güvenilirlik, dayanım odaklı bir yapıdan teslimatlara gerçekleşiyor.')); ?></p>
             </div>
 
             <div class="footer__col">
@@ -36,14 +36,14 @@ if (!defined('ABSPATH')) {
             </div>
 
             <div class="footer__col">
-                <h3>Bizi Sosyal Medyada Takip Edin</h3>
+                <h3><?php echo esc_html(il_theme_option('footer_social_title', 'Bizi Sosyal Medyada Takip Edin')); ?></h3>
                 <div class="footer__social">
                     <a href="<?php echo esc_url(il_theme_option('instagram', '#')); ?>" aria-label="Instagram">I</a>
                     <a href="<?php echo esc_url(il_theme_option('facebook', '#')); ?>" aria-label="Facebook">F</a>
                     <a href="<?php echo esc_url(il_theme_option('linkedin', '#')); ?>" aria-label="LinkedIn">L</a>
                 </div>
 
-                <h3>Bize Ulaşın</h3>
+                <h3><?php echo esc_html(il_theme_option('footer_contact_title', 'Bize Ulaşın')); ?></h3>
                 <ul class="footer__contact-list">
                     <li><?php echo esc_html(il_theme_option('phone', '+90 555 123 4567')); ?></li>
                     <li><?php echo esc_html(il_theme_option('address', 'Lorem Ipsum No: 5 Ümraniye - İstanbul')); ?></li>
@@ -54,7 +54,7 @@ if (!defined('ABSPATH')) {
     </div>
 
     <div class="footer__bottom">
-        <div class="container">Copyright © <?php echo esc_html(date_i18n('Y')); ?>. Tüm Hakları Saklıdır.</div>
+        <div class="container">Copyright © <?php echo esc_html(date_i18n('Y')); ?>. <?php echo esc_html(il_theme_option('footer_copyright_text', 'Tüm Hakları Saklıdır.')); ?></div>
     </div>
 </footer>
 <?php wp_footer(); ?>

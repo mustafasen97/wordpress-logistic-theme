@@ -17,6 +17,8 @@ $default_menu = [
 $show_top_bar = il_theme_option('show_top_bar', '1') === '1';
 $header_cta_text = il_theme_option('header_cta_text', 'Teklif Al');
 $header_cta_url = il_theme_option('header_cta_url', '#contact');
+$header_layout = il_theme_option('header_layout', 'default');
+$header_layout_class = $header_layout === 'centered-logo' ? ' header--centered-logo' : '';
 
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -47,10 +49,14 @@ $header_cta_url = il_theme_option('header_cta_url', '#contact');
 </div>
 <?php endif; ?>
 
-<header class="header">
+<header class="header<?php echo esc_attr($header_layout_class); ?>">
     <div class="container header__container">
         <div class="header__logo">
-            <a href="<?php echo esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?><span>.</span></a>
+            <?php if (has_custom_logo()) : ?>
+                <?php echo wp_kses_post(get_custom_logo()); ?>
+            <?php else : ?>
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="header__logo-link" aria-label="<?php esc_attr_e('Home', 'ipsum-logistic'); ?>"><?php bloginfo('name'); ?><span>.</span></a>
+            <?php endif; ?>
         </div>
 
         <nav class="header__nav" aria-label="<?php esc_attr_e('Primary', 'ipsum-logistic'); ?>">
